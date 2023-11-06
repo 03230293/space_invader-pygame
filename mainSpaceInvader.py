@@ -1,3 +1,5 @@
+#https://youtu.be/FfWpgLFMI7w
+
 import math
 import random
 
