@@ -8,14 +8,14 @@ class TestSpaceInvader(unittest.TestCase):
     def setUp(self):
         pygame.init()
         self.screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption('Space Invander')
+        pygame.display.set_caption('Space Invader')
 
     def test_window_creation(self):
         self.assertEqual(self.screen.get_width(), 800)
         self.assertEqual(self.screen.get_height(), 600)
 
     def test_window_caption(self):
-        self.assertEqual(pygame.display.get_caption()[0], 'Space Invander')
+        self.assertEqual(pygame.display.get_caption()[0], 'Space Invader')
 
 
 class TestSoundLoading(unittest.TestCase):
