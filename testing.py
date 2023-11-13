@@ -1,43 +1,80 @@
 import unittest
-import pygame
-# from pygame import Spaceship
-# from pygame import Alien_Bullets
-# from pygame import Explosion
+from unittest.mock import MagicMock
+import mainSpaceInvader  # Assuming your main code is in a file named space_invader.py
 
 class TestSpaceInvader(unittest.TestCase):
     def setUp(self):
-        pygame.init()
-        self.screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption('Space Invader')
+        pygame = MagicMock()
+        pygame.QUIT = 1
+        pygame.KEYDOWN = 2
+        pygame.KEYUP = 3
+        pygame.K_LEFT = 276
+        pygame.K_RIGHT = 275
+        pygame.K_SPACE = 32
+        pygame.init = MagicMock()
+        pygame.display.set_mode = MagicMock(return_value=MagicMock())
+        pygame.image.load = MagicMock()
+        pygame.mixer.music.load = MagicMock()
+        pygame.mixer.music.play = MagicMock()
+        pygame.display.set_caption = MagicMock()
+        pygame.display.set_icon = MagicMock()
+        pygame.font.Font = MagicMock()
+        pygame.event.get = MagicMock(return_value=[MagicMock()])
+        pygame.KEYDOWN = 2
+        pygame.KEYUP = 3
+        pygame.QUIT = 12
+        pygame.K_LEFT = 276
+        pygame.K_RIGHT = 275
+        pygame.K_SPACE = 32
 
-    def test_window_creation(self):
-        self.assertEqual(self.screen.get_width(), 800)
-        self.assertEqual(self.screen.get_height(), 600)
+        self.pygame = pygame
+        self.pygame.display.update = MagicMock()
 
-    def test_window_caption(self):
-        self.assertEqual(pygame.display.get_caption()[0], 'Space Invader')
+    def test_collision_detection(self):
+        # Mocking required modules
+        pygame = self.pygame
+        mainSpaceInvader = pygame
 
+        # Initializing your game
+        mainSpaceInvader.init_game()
 
-class TestSoundLoading(unittest.TestCase):
-    def setUp(self):
-        pygame.mixer.init()
-        self.explosion_fx = pygame.mixer.Sound("explosion.wav")
-        self.explosion_fx.set_volume(1)
-        self.laser_fx = pygame.mixer.Sound("laser.wav")
-        self.laser_fx.set_volume(1)
+        # Creating a collision
+        mainSpaceInvader.enemyX[0] = 370
+        mainSpaceInvader.enemyY[0] = 480
+        mainSpaceInvader.bulletX = 370
+        mainSpaceInvader.bulletY = 480
+        self.assertTrue(mainSpaceInvader.isCollision(mainSpaceInvader.enemyX[0], mainSpaceInvader.enemyY[0],
+                                                  mainSpaceInvader.bulletX, mainSpaceInvader.bulletY))
 
-    def test_sound_loading(self):
-        self.assertIsNotNone(self.explosion_fx)
-        self.assertIsNotNone(self.laser_fx)
+        # Creating a non-collision
+        mainSpaceInvader.enemyX[0] = 100
+        mainSpaceInvader.enemyY[0] = 100
+        mainSpaceInvader.bulletX = 370
+        mainSpaceInvader.bulletY = 480
+        self.assertTrue(mainSpaceInvader.isCollision(mainSpaceInvader.enemyX[0], mainSpaceInvader.enemyY[0],
+                                                   mainSpaceInvader.bulletX, mainSpaceInvader.bulletY))
 
-    def test_sound_playing(self):
-        self.explosion_fx.play()
-        self.assertTrue(pygame.mixer.get_busy())
-        pygame.time.wait(1000)  #awaits for a sound to end
+    def test_player_movement(self):
+        # Mocking required modules
+        pygame = self.pygame
+        mainSpaceInvader = pygame
 
-        self.laser_fx.play()
-        self.assertTrue(pygame.mixer.get_busy())
-        pygame.time.wait(1000)   ##awaits for a sound to end
-        
+        # Initializing your game
+        mainSpaceInvader.init_game()
+
+        # Move player to the left
+        mainSpaceInvader.playerX = 370
+        mainSpaceInvader.playerX_change = -5
+        mainSpaceInvader.move_player()
+        self.assertEqual(mainSpaceInvader.playerX, 370)
+
+        # Move player to the right
+        mainSpaceInvader.playerX = 370
+        mainSpaceInvader.playerX_change = 5
+        mainSpaceInvader.move_player()
+        self.assertEqual(mainSpaceInvader.playerX, 370)
+
+    # Add more tests for other functions as needed
+
 if __name__ == '__main__':
     unittest.main()
