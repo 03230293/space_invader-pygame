@@ -68,7 +68,7 @@ class TestSpaceInvader(unittest.TestCase):
         mainSpaceInvader.move_player()
         self.assertEqual(mainSpaceInvader.playerX, 370)
 
-        # Move player to the right
+        # Move player  to the right
         mainSpaceInvader.playerX = 370
         mainSpaceInvader.playerX_change = 5
         mainSpaceInvader.move_player()
