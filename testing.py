@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import MagicMock
-import mainSpaceInvader  # Assuming your main code is in a file named space_invader.py
+import mainSpaceInvader  
 
 class TestSpaceInvader(unittest.TestCase):
     def setUp(self):
@@ -35,7 +35,7 @@ class TestSpaceInvader(unittest.TestCase):
         pygame = self.pygame
         mainSpaceInvader = pygame
 
-        # Initializing your game
+        # Initializing game
         mainSpaceInvader.init_game()
 
         # Creating a collision
@@ -59,7 +59,7 @@ class TestSpaceInvader(unittest.TestCase):
         pygame = self.pygame
         mainSpaceInvader = pygame
 
-        # Initializing your game
+        # Initializing  game
         mainSpaceInvader.init_game()
 
         # Move player to the left
@@ -74,7 +74,6 @@ class TestSpaceInvader(unittest.TestCase):
         mainSpaceInvader.move_player()
         self.assertEqual(mainSpaceInvader.playerX, 370)
 
-    # Add more tests for other functions as needed
 
 if __name__ == '__main__':
     unittest.main()
