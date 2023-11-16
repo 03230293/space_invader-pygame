@@ -130,9 +130,6 @@ while running:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 playerX_change = 0
 
-    # 5 = 5 + -0.1 -> 5 = 5 - 0.1
-    # 5 = 5 + 0.1
-
     playerX += playerX_change
     if playerX <= 0:
         playerX = 0
