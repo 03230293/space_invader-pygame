@@ -1,7 +1,10 @@
 # space_invader-pygame
 
-Python is a general-purpose programming language noted for its readability and ease of use, and it is a popular choice for generating unit tests due to its ease of writing straightforward test cases.
-The unittest framework is a Python package that provides a standardized approach to develop and organize unit tests. It includes tools such as test discovery and assertion helpers that make it simple to develop and run tests.
+Python is a general-purpose programming language noted for its readability and ease of use 
+         it is a popular choice for generating unit tests due to its ease of writing straightforward test cases.
+
+The unittest framework is a Python package that provides a standardized approach to develop and organize unit tests. 
+It includes tools such as test discovery and assertion helpers that make it simple to develop and run tests.
 The MagicMock library is a Python third-party library that provides a mocking framework. Mocks are objects that replicate the behavior of real things and can be used to separate code from its dependencies. MagicMocks are used in this example to mock the pygame module, which is needed by the space invader code.
 
 The utilization of these resources is justified as follows:
